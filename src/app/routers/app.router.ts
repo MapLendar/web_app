@@ -10,7 +10,7 @@ import { SelectivePreloadingStrategy } from "../strategies/selective-preloading.
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent
   },
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
-  { path: '',   redirectTo: '/home', pathMatch: 'full' }
+  { path: '',   redirectTo: '', pathMatch: 'full' }
 //  { path: '**', component: PageNotFoundComponent }
 ];
 

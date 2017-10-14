@@ -15,7 +15,6 @@ import { CalendarComponent } from "./views/calendar/calendar.component";
 @NgModule({
   declarations: [
     AppComponent,
-    
     HeaderComponent,
     FooterComponent,
     HomeComponent,
