@@ -12,6 +12,9 @@ import { RegisterComponent } from "./views/register/register.component";
 import { MapComponent } from "./views/map/map.component";
 import { CalendarComponent } from "./views/calendar/calendar.component";
 
+import { UserService } from "./services/user.service";
+
+
 @NgModule({
   declarations: [
     AppComponent,

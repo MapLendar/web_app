@@ -1,4 +1,4 @@
-import { Place } from "./place";
+import { Place } from "./place.model";
 
 export class Event
 {

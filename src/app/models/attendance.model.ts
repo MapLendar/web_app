@@ -1,11 +1,11 @@
-import { Event } from "./event";
-import { User } from "./user";
+import { Event } from "./event.model";
+import { User } from "./user.model";
 
 export class Attendance
 {
     id: number;
-    user_id: User.id;
-    event_id: Event.id;
+    user_id: number;
+    event_id: number;
     address: string;
     status: string;
     resource_uri: string;
