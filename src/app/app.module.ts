@@ -27,7 +27,9 @@ import { CalendarComponent } from "./views/calendar/calendar.component";
     BrowserModule,
     AppRouter
   ],
-  providers: [],
+  providers: [
+    UserService  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
