@@ -1,6 +1,6 @@
-import { Injectable }     from '@angular/core';
+import { Injectable, Component }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable, Subject } from 'rxjs/Rx';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -38,8 +38,8 @@ export class UserService
 			data.token = data.data.token;
 			delete data.data.token;
 			user = new User( data );
-			if( !AppGlobals.HEADERS.has( "Authorization" ) )
-				AppGlobals.HEADERS.set( "Authorization", user.token );
+			if( !AppGlobals.URIHEADERS.has( "Authorization" ) )
+				AppGlobals.URIHEADERS.set( "Authorization", user.token );
 		}
 		else
 			user = new User( {} );
@@ -57,7 +57,7 @@ export class UserService
 	{
 		sessionStorage.removeItem( "user" );
 		this.setUser( new User( {} ) );
-		AppGlobals.HEADERS = new Headers( { "Content-Type": "application/json", "Accept": "application/json" } );
+		AppGlobals.URIHEADERS = new Headers( { "Content-Type": "application/json", "Accept": "application/json" } );
 	}
 
 	// Handle errors
@@ -79,7 +79,7 @@ export class UserService
 
 	public logIn( credentials: any ): Observable<any>
 	{
-		return this.http.post( this.logInURL, credentials, { headers: AppGlobals.HEADERS } )
+		return this.http.post( this.logInURL, credentials, { headers: AppGlobals.URIHEADERS } )
 			.map( response => response.json().data )
 			.catch( this.handleError );
 	}
@@ -89,14 +89,14 @@ export class UserService
 	    let userAux: any = Object.assign( {}, user );
 	    userAux.password = password;
 	    userAux.password_confirmation = password_confirmation;
-		return return this.http.post( `${this.usersURL}/create`, { data: userAux }, { headers: AppGlobals.HEADERS } )
+		return this.http.post( `${this.usersURL}`, { data: userAux }, { headers: AppGlobals.URIHEADERS } )
 			.map( response => response.json().data )
 			.catch( this.handleError );
 	}
 
 	public update( user: User ): Observable<any>
 	{
-		return this.http.put( `${this.usersURL}/update/${user.id}`, { data: user }, { headers: AppSettings.HEADERS } )
+		return this.http.put( `${this.usersURL}`, { data: user }, { headers: AppGlobals.URIHEADERS } )
 			.map( response => response.json().data )
 			.catch( this.handleError );
 	}
