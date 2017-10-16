@@ -33,6 +33,7 @@ export class LoginComponent {
     console.log(this.userService.logIn( this.email, this.password ).subscribe(
       data => {
         if(data){
+          this.userService.setToken(data);
           this.router.navigate(['/']);
         }
       },

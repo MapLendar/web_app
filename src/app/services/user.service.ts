@@ -77,6 +77,11 @@ export class UserService
 		return Observable.throw( errMsg );
 	}
 
+	public setToken( token: any ): void
+	{
+		sessionStorage.setItem( "token", JSON.stringify( token ) );
+	}
+
 	public logIn( email: any, password: any ): Observable<any>
 	{
 		return this.http.post( this.logInURL, {email, password}, { headers: AppGlobals.URIHEADERS } )
