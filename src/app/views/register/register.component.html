@@ -65,6 +65,9 @@
                             <div [hidden] = "!registerForm.controls.email.errors.required">
                                 Debe escribir el correo
                             </div>
+                            <div [hidden] = "!registerForm.controls.email.errors.pattern">
+                                Debe escribir un correo valido
+                            </div>
                         </span>
                     </div>
                 </div>
