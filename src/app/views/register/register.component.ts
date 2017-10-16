@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { User } from "../../models/user.model";
 import { UserService } from '../../services/user.service';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from "@angular/forms";
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -15,7 +17,7 @@ export class RegisterComponent {
   submitted = false;
   registerForm: FormGroup;
   
-  constructor( private userService: UserService, private formBuilder: FormBuilder)
+  constructor( private userService: UserService, private formBuilder: FormBuilder, private router: Router)
 	{
 		this.user = new User( {} );
 		this.password = {
@@ -33,10 +35,14 @@ export class RegisterComponent {
 
 		this.submitted = true;
 
-    this.userService.create( this.user, this.password.value, this.password.confirmation ).subscribe(
-      user => console.log(user),
+    console.log(this.userService.create( this.user, this.password.value, this.password.confirmation ).subscribe(
+      data => {
+        if(data){
+          this.router.navigate(['/login']);
+        }
+      },
       err => console.log(err)
-    );
+    ));
   }
   
   private createRegisterForm(): FormGroup

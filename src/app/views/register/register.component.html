@@ -65,6 +65,9 @@
                             <div [hidden] = "!registerForm.controls.email.errors.required">
                                 Debe escribir el correo
                             </div>
+                            <div [hidden] = "!registerForm.controls.email.errors.pattern">
+                                Debe escribir un correo valido
+                            </div>
                         </span>
                     </div>
                 </div>
@@ -109,6 +112,7 @@
                 <div class="form-group ">
                     <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Registrarse</button>
                 </div>
+                <div class="text-center"><a routerLink="/login">Ya tienes una cuenta? Ingresa!</a></div>
             </form>
         </div>
     </div>

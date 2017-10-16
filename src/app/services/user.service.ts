@@ -85,13 +85,9 @@ export class UserService
 	}
 
 	public create( user: User, password: string, password_confirmation: string ): Observable<any>
-	{
-	    let userAux: any = Object.assign( {}, user );
-	    userAux.password = password;
-		userAux.password_confirmation = password_confirmation;
-		
-		return this.http.post( `${this.usersURL}`, { data: userAux }, { headers: AppGlobals.URIHEADERS } )
-			.map( response => response.json().data )
+	{		
+		return this.http.post( `${this.usersURL}`, { first_name: user.first_name, last_name: user.last_name,password, email: user.email, age: user.age, password_confirmation }, { headers: AppGlobals.URIHEADERS } )
+			.map( response => response.json().user )
 			.catch( this.handleError );
 	}
 
