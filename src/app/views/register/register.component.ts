@@ -34,6 +34,7 @@ export class RegisterComponent {
 		this.submitted = true;
 
     this.userService.create( this.user, this.password.value, this.password.confirmation ).subscribe(
+      user => console.log(user),
       err => console.log(err)
     );
   }

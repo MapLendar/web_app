@@ -87,10 +87,10 @@ export class UserService
 	public create( user: User, password: string, password_confirmation: string ): Observable<any>
 	{
 	    let userAux: any = Object.assign( {}, user );
-		delete userAux.id;
-		delete userAux.token;
+	    userAux.password = password;
+		userAux.password_confirmation = password_confirmation;
 		
-		return this.http.post( `${this.usersURL}`, { data: userAux, password, password_confirmation }, { headers: AppGlobals.URIHEADERS } )
+		return this.http.post( `${this.usersURL}`, { data: userAux }, { headers: AppGlobals.URIHEADERS } )
 			.map( response => response.json().data )
 			.catch( this.handleError );
 	}
