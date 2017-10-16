@@ -77,10 +77,10 @@ export class UserService
 		return Observable.throw( errMsg );
 	}
 
-	public logIn( credentials: any ): Observable<any>
+	public logIn( email: any, password: any ): Observable<any>
 	{
-		return this.http.post( this.logInURL, credentials, { headers: AppGlobals.URIHEADERS } )
-			.map( response => response.json().data )
+		return this.http.post( this.logInURL, {email, password}, { headers: AppGlobals.URIHEADERS } )
+			.map( response => response.json().token )
 			.catch( this.handleError );
 	}
 

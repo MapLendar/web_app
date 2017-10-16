@@ -7,15 +7,23 @@
                </div>
         </div> 
         <div class="main-login main-center">
-            <form class="form-horizontal" method="post" action="#">
+            <form class="form-horizontal" [formGroup] = "loginForm" (ngSubmit) = "logIn()">
     
                 <div class="form-group">
                     <label for="email" class="cols-sm-2 control-label">Correo</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="email" id="email"  placeholder="Ingresa tu correo electrónico"/>
+                            <input type="text" class="form-control" name="email" id="email"  placeholder="Ingresa tu correo electrónico" formControlName = "email" [(ngModel)] = "email" autofocus/>
                         </div>
+                        <span *ngIf = "loginForm.controls.email.errors" class = "tooltip-content">
+                            <div [hidden] = "!loginForm.controls.email.errors.required">
+                                Debe escribir el correo
+                            </div>
+                            <div [hidden] = "!loginForm.controls.email.errors.pattern">
+                                Debe escribir un correo valido
+                            </div>
+                        </span>
                     </div>
                 </div>
 
@@ -24,13 +32,21 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <input type="password" class="form-control" name="password" id="password"  placeholder="Ingresa tu contraseña"/>
+                            <input type="password" class="form-control" name="password" id="password"  placeholder="Ingresa tu contraseña" formControlName = "password" [(ngModel)] = "password" />
                         </div>
+                        <span *ngIf = "loginForm.controls.password.errors" class = "tooltip-content">
+                            <div [hidden] = "!loginForm.controls.password.errors.required">
+                                Debe escribir la contraseña
+                            </div>
+                            <div [hidden] = "!loginForm.controls.password.errors.minlength">
+                                La contraseña debe tener al menos 8 caracteres
+                            </div>
+                        </span>
                     </div>
                 </div>
 
                 <div class="form-group ">
-                    <button type="button" class="btn btn-success btn-lg btn-block login-button">Ingresar</button>
+                    <button type="submit" class="btn btn-success btn-lg btn-block login-button">Ingresar</button>
                 </div>
                 <div class="text-center"><a routerLink="/register">No tienes una cuenta? Registrate!</a></div>
                 
