@@ -2,8 +2,8 @@ export class User
 {
 	id: number;
 	token: string;
-	firstName: string;
-	lastName: string;
+	first_name: string;
+	last_name: string;
 	email: string;
 	age: number;
 	
@@ -13,8 +13,8 @@ export class User
 		{
 			this.id = null;
 			this.token = null;
-			this.firstName = null;
-			this.lastName = null;
+			this.first_name = null;
+			this.last_name = null;
 			this.email = null;
 			this.age = null;
 		}
@@ -22,8 +22,8 @@ export class User
 		{
 			this.id = data.id;
 			this.token = data.token;
-			this.firstName = data.name;
-			this.lastName = data.lastName;
+			this.first_name = data.name;
+			this.last_name = data.lastName;
 			this.email = data.email;
 			this.age = data.age;
 		}

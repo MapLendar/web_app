@@ -88,7 +88,8 @@ export class UserService
 	{
 	    let userAux: any = Object.assign( {}, user );
 	    userAux.password = password;
-	    userAux.password_confirmation = password_confirmation;
+		userAux.password_confirmation = password_confirmation;
+		
 		return this.http.post( `${this.usersURL}`, { data: userAux }, { headers: AppGlobals.URIHEADERS } )
 			.map( response => response.json().data )
 			.catch( this.handleError );
