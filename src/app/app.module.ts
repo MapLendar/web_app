@@ -5,6 +5,7 @@ import { HttpModule } from "@angular/http";
 
 import { Router } from '@angular/router';
 
+import { EventServiceService } from './services/event-service.service';
 import { AppComponent } from './app.component';
 import { AppRouter } from './routers/app.router';
 import { HeaderComponent } from "./views/header/header.component";
@@ -14,6 +15,8 @@ import { LoginComponent } from "./views/login/login.component";
 import { RegisterComponent } from "./views/register/register.component";
 import { MapComponent } from "./views/map/map.component";
 import { CalendarComponent } from "./views/calendar/calendar.component";
+import { CreateEventComponent } from './views/create-event/create-event.component';
+import { EventosComponent } from './views/eventos/eventos.component';
 
 import { UserService } from "./services/user.service";
 
@@ -27,7 +30,9 @@ import { UserService } from "./services/user.service";
     LoginComponent,
     RegisterComponent,
     MapComponent,
-    CalendarComponent
+    CalendarComponent,
+    CreateEventComponent,
+    EventosComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,8 @@ import { UserService } from "./services/user.service";
     HttpModule
   ],
   providers: [
-    UserService  
+    UserService, 
+    EventServiceService	
   ],
   bootstrap: [AppComponent]
 })
