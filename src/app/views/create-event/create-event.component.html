@@ -7,13 +7,13 @@
                </div>
         </div> 
         <div class="main-login main-center">
-            <form class="form-horizontal" [formGroup] = "registerForm" (ngSubmit) = "register()">
+            <form class="form-horizontal" [formGroup] = "registerForm" (ngSubmit) = "createEvent()">
                 
                 <div class="form-group">
                     <label for="name" class="cols-sm-2 control-label">Nombre</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-address-card fa" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" name="name" id="name"  placeholder="Ingresa nombre evento" formControlName = "name" [(ngModel)] = "event.name" autofocus/>
                         </div>
                         <span *ngIf = "registerForm.controls.name.errors" class = "tooltip-content">
@@ -28,7 +28,7 @@
                     <label for="description" class="cols-sm-2 control-label">Descripcion</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-address-card fa" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" name="description" id="description"  placeholder="Ingresa descripcion del evento" formControlName = "description" [(ngModel)] = "event.description"/>
                         </div>
                         <span *ngIf = "registerForm.controls.description.errors" class = "tooltip-content">
@@ -44,7 +44,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-address-card fa" aria-hidden="true"></i></span>
-                            <input type="number" class="form-control" name="site_id" id="site_id"  placeholder="Ingresa tu edad" formControlName = "site_id" [(ngModel)] = "event.site_id"/>
+                            <input type="number" class="form-control" name="site_id" id="site_id"  placeholder="Ingresa el lugar del evento" formControlName = "site_id" [(ngModel)] = "event.site_id"/>
                         </div>
                         <span *ngIf = "registerForm.controls.site_id.errors" class = "tooltip-content">
                             <div [hidden] = "!registerForm.controls.site_id.errors.required">
@@ -58,8 +58,8 @@
                     <label for="start_time" class="cols-sm-2 control-label">Fecha de inicio</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                           <input type="text" class="form-control" name="start_time" id="start_time"  placeholder="Ingresa la fecha del evento" formControlName = "start_time" [(ngModel)] = "event.start_time"/>
+                            <span class="input-group-addon"><i class="fa fa-address-card fa" aria-hidden="true"></i></span>
+                           <input type="datetime-local" class="form-control" name="start_time" id="start_time"  placeholder="Ingresa la fecha del evento" formControlName = "start_time" [(ngModel)] = "event.start_time"/>
                         </div>
                         <span *ngIf = "registerForm.controls.start_time.errors" class = "tooltip-content">
                             <div [hidden] = "!registerForm.controls.start_time.errors.required">
@@ -75,8 +75,8 @@
                     <label for="end_time" class="cols-sm-2 control-label">Fecha de terminacion del evento</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="end_time" id="end_time"  placeholder="Ingresa la fecha y hora de terminacion del evento" formControlName = "end_time" [(ngModel)] = "event.end_time"/>
+                            <span class="input-group-addon"><i class="fa fa-address-card fa" aria-hidden="true"></i></span>
+                            <input type="datetime-local" class="form-control" name="end_time" id="end_time"  placeholder="Ingresa la fecha y hora de terminacion del evento" formControlName = "end_time" [(ngModel)] = "event.end_time"/>
                         </div>
                         <span *ngIf = "registerForm.controls.end_time.errors" class = "tooltip-content">
                             <div [hidden] = "!registerForm.controls.end_time.errors.required">
@@ -90,7 +90,7 @@
                     <label for="owner_id" class="cols-sm-2 control-label">Id del usuario</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                             <input type="number" class="form-control" name="owner_id" id="owner_id"  placeholder="Usuario dueño" formControlName = "owner_id" [(ngModel)] = "event.owner_id"/>
                         </div>
                         <span *ngIf = "registerForm.controls.owner_id.errors" class = "tooltip-content">
@@ -102,9 +102,11 @@
                 </div>
 
                 <div class="form-group ">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Crear</button>
+                   
+		    <button (click)="createEvent(name.value, description.value, site_id.value, start_time.value, end_time.value, owner_id.value)" type="submit" class="btn btn-primary btn-lg btn-block">Crear Evento</button>
+
                 </div>
-                <div class="text-center"><a routerLink="/login">Ya tienes una cuenta? Ingresa!</a></div>
+               
             </form>
         </div>
     </div>

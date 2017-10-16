@@ -22,8 +22,8 @@ export class CreateEventComponent implements OnInit {
   ngOnInit() {
   }
   
-  createEvent(event_id, name, description, site_id, start_time, end_time, owner_id) {
-      this.eventServiceService.createEvent(event_id, name, description, site_id, start_time, end_time, owner_id	).subscribe(res => {
+  createEvent(name, description, site_id, start_time, end_time, owner_id) {
+      this.eventServiceService.createEvent(name, description, site_id, start_time, end_time, owner_id).subscribe(res => {
       console.log(res)
    })
   }
