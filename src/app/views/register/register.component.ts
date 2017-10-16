@@ -33,9 +33,9 @@ export class RegisterComponent {
 
 		this.submitted = true;
 
-    this.userService.create( this.user, this.password.value, this.password.confirmation ).subscribe(
+    console.log(this.userService.create( this.user, this.password.value, this.password.confirmation ).subscribe(
       err => console.log(err)
-    );
+    ));
   }
   
   private createRegisterForm(): FormGroup
