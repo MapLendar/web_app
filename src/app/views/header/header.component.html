@@ -16,8 +16,13 @@
                 <li class="active"><a routerLink="/" routerLinkActive="active">Home</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
-                <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+                <ng-container *ngIf="!app.isLoggedIn();else right_loggedIn" >
+                    <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+                    <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+                </ng-container>
+                <ng-template #right_loggedIn>
+                    <li><a routerLink="" routerLinkActive="active" (click)=logout()>Logout</a></li>
+                </ng-template>
             </ul>
         </div>
     </nav>

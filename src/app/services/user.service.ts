@@ -55,7 +55,7 @@ export class UserService
 
 	public logOut(): void
 	{
-		sessionStorage.removeItem( "user" );
+		sessionStorage.removeItem( "token" );
 		this.setUser( new User( {} ) );
 		AppGlobals.URIHEADERS = new Headers( { "Content-Type": "application/json", "Accept": "application/json" } );
 	}
