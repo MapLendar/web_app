@@ -10,14 +10,14 @@ import { OnInit } from '@angular/core';
   templateUrl: './sites.component.html',
   styleUrls: ['./sites.component.sass']
 })
-export class SitesComponent{
+export class SitesComponent implements OnInit{
   sites: any;
 
   constructor(private userService: UserService, private sitesService: SitesService)
 	{
 		this.sites = [
-      {image: "asdas", description:"12345", name:"nameaa"},
-      {image: "asdas", description:"12345", name:"nameaa"}
+      // {image: "asdas", description:"12345", name:"nameaa"},
+      // {image: "asdas", description:"12345", name:"nameaa"}
     ];
   }
 

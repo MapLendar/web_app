@@ -6,6 +6,8 @@ import { LoginComponent } from "../views/login/login.component";
 import { RegisterComponent } from "../views/register/register.component";
 import { CreateEventComponent } from "../views/create-event/create-event.component";
 import { SitesComponent } from "../views/sites/sites.component";
+import { EventosComponent } from "../views/eventos/eventos.component";
+
 
 //import { PageNotFoundComponent }    from './not-found.component';
 
@@ -31,6 +33,10 @@ const routes: Routes = [
   {
     path: 'sites',
     component: SitesComponent
+  },
+  {
+    path: 'myEvents',
+    component: EventosComponent
   },
   { path: '',   redirectTo: '', pathMatch: 'full' }
 //  { path: '**', component: PageNotFoundComponent }

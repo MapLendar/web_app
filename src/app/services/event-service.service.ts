@@ -18,7 +18,7 @@ export class EventServiceService {
   constructor(private http: Http) { 
 	this.logInURL = `${AppGlobals.APIURI}/sign-in`;
  	this.usersURL = `${AppGlobals.APIURI}/users`;
-        this.eventsURL = `${AppGlobals.APIURI}/events`;
+    this.eventsURL = `${AppGlobals.APIURI}/events`;
   }
   
   public crear( event: Event ): Observable<any>
@@ -67,6 +67,18 @@ export class EventServiceService {
 		return this.http.put( `${this.eventsURL}`, { data: event }, { headers: AppGlobals.URIHEADERS } )
 			.map( response => response.json().data )
 			.catch( this.handleError );
+	}
+
+	public events(): Observable<any>
+	{		
+		return this.http.get( `${this.eventsURL}`, { headers: AppGlobals.URIHEADERS } )
+			.map( response => response )
+			.catch( this.handleError );
+    }
+    
+    public setEvents(events: any): void
+	{		
+		sessionStorage.setItem( "events", JSON.stringify( events ) );
 	}
 
 }

@@ -1,11 +1,11 @@
-import { Place } from "./place.model";
+import { Site } from "./site.model";
 
 export class Event
 {
     id: number;    
     name: string;
     description: string;
-    site_id: Place;
+    site_id: Site;
     start_time: string;
     end_time: string;
     

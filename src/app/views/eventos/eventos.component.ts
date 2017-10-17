@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SitesService } from '../../services/sites.service';
+import { EventServiceService } from '../../services/event-service.service'; 
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-eventos',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventosComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  events: any;
+  
+    constructor(private userService: UserService, private eventsService: EventServiceService)
+    {
+      this.events = [
+        // {description:"12345", name:"nameaa"},
+        // {description:"12345", name:"nameaa"}
+      ];
+    }
+  
+    ngOnInit() {
+      this.eventsService.events().subscribe(
+        data => {
+          if(data){
+            this.events = data.json().events;
+            this.eventsService.setEvents(this.events);
+            this.userService.setToken(data.json().token);
+          }
+        },
+        err => console.log(err)
+      )
+    }
 }
