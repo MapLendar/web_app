@@ -17,8 +17,11 @@ import { MapComponent } from "./views/map/map.component";
 import { CalendarComponent } from "./views/calendar/calendar.component";
 import { CreateEventComponent } from './views/create-event/create-event.component';
 import { EventosComponent } from './views/eventos/eventos.component';
+import { SitesComponent } from './views/sites/sites.component';
+
 
 import { UserService } from "./services/user.service";
+import { SitesService } from "./services/sites.service";
 
 
 @NgModule({
@@ -32,7 +35,8 @@ import { UserService } from "./services/user.service";
     MapComponent,
     CalendarComponent,
     CreateEventComponent,
-    EventosComponent
+    EventosComponent,
+    SitesComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,8 @@ import { UserService } from "./services/user.service";
   ],
   providers: [
     UserService, 
-    EventServiceService	
+    EventServiceService,
+    SitesService
   ],
   bootstrap: [AppComponent]
 })

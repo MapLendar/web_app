@@ -5,6 +5,8 @@ import { HomeComponent } from "../views/home/home.component";
 import { LoginComponent } from "../views/login/login.component";
 import { RegisterComponent } from "../views/register/register.component";
 import { CreateEventComponent } from "../views/create-event/create-event.component";
+import { SitesComponent } from "../views/sites/sites.component";
+
 //import { PageNotFoundComponent }    from './not-found.component';
 
 import { SelectivePreloadingStrategy } from "../strategies/selective-preloading.strategy";
@@ -25,6 +27,10 @@ const routes: Routes = [
   {
     path: 'events',
     component: CreateEventComponent
+  },
+  {
+    path: 'sites',
+    component: SitesComponent
   },
   { path: '',   redirectTo: '', pathMatch: 'full' }
 //  { path: '**', component: PageNotFoundComponent }
