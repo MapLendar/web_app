@@ -14,12 +14,10 @@
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a routerLink="/" routerLinkActive="active">Home</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a routerLink="/myEvents" routerLinkActive="active">Mis Eventos</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a routerLink="/sites" routerLinkActive="active">Sitios</a></li>
+                <ng-container *ngIf="app.isLoggedIn()" >
+                    <li><a routerLink="/myEvents" routerLinkActive="active">Mis Eventos</a></li>
+                    <li><a routerLink="/sites" routerLinkActive="active">Sitios</a></li>
+                </ng-container>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <ng-container *ngIf="!app.isLoggedIn();else right_loggedIn" >

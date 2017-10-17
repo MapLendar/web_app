@@ -96,12 +96,9 @@ export class UserService
 	
 	public logOut(): Observable<any>
 	{
-		console.log("AppGlobals.URIHEADERS -> BEFORE this.deleteToken()\n", AppGlobals.URIHEADERS);
 		let logoutHeader = JSON.parse(JSON.stringify(AppGlobals.URIHEADERS));
-		console.log("logoutHeader -> BEFORE this.deleteToken()\n", logoutHeader);
 		this.deleteToken();
-		console.log("logoutHeader -> AFTER this.deleteToken()\n", logoutHeader);
-		console.log("AppGlobals.URIHEADERS -> AFTER this.deleteToken()\n", AppGlobals.URIHEADERS);
+		sessionStorage.clear();
 		return this.http.get( this.logOutURL, { headers: logoutHeader } )
 			.map( response => response.json() )
 			.catch( this.handleError );
