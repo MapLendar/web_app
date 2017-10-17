@@ -80,6 +80,7 @@ export class UserService
 	public setToken( token: any ): void
 	{
 		sessionStorage.setItem( "token", JSON.stringify( token ) );
+		AppGlobals.URIHEADERS.set( "Authorization", token );
 	}
 
 	public logIn( email: any, password: any ): Observable<any>
