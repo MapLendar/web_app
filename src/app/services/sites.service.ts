@@ -8,10 +8,6 @@ import 'rxjs/add/operator/catch';
 import { AppGlobals } from "../app.settings";
 import { User } from "../models/user.model";
 
-@Component({
-  providers: [AppGlobals]
-})
-
 @Injectable()
 export class SitesService
 {

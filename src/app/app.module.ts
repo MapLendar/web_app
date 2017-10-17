@@ -5,7 +5,7 @@ import { HttpModule } from "@angular/http";
 
 import { Router } from '@angular/router';
 
-import { EventServiceService } from './services/event-service.service';
+import { AppGlobals } from './app.settings'
 import { AppComponent } from './app.component';
 import { AppRouter } from './routers/app.router';
 import { HeaderComponent } from "./views/header/header.component";
@@ -22,6 +22,7 @@ import { SitesComponent } from './views/sites/sites.component';
 
 import { UserService } from "./services/user.service";
 import { SitesService } from "./services/sites.service";
+import { EventServiceService } from './services/event-service.service';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { SitesService } from "./services/sites.service";
     HttpModule
   ],
   providers: [
+    AppGlobals,
     UserService, 
     EventServiceService,
     SitesService

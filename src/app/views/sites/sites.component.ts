@@ -27,7 +27,7 @@ export class SitesComponent implements OnInit{
         if(data){
           this.sites = data.json().sites;
           this.sitesService.setSites(this.sites);
-          this.userService.setToken(data.json().token);
+          this.userService.refreshToken(data.json().token);
         }
       },
       err => console.log(err)

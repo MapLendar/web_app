@@ -26,7 +26,7 @@ export class EventosComponent implements OnInit {
           if(data){
             this.events = data.json().events;
             this.eventsService.setEvents(this.events);
-            this.userService.setToken(data.json().token);
+            this.userService.refreshToken(data.json().token);
           }
         },
         err => console.log(err)

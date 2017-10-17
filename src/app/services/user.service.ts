@@ -8,10 +8,6 @@ import 'rxjs/add/operator/catch';
 import { AppGlobals } from "../app.settings";
 import { User } from "../models/user.model";
 
-@Component({
-  providers: [AppGlobals]
-})
-
 @Injectable()
 export class UserService
 {
@@ -19,15 +15,17 @@ export class UserService
 	public userState: Observable<User>;
 	private logInURL: string;
 	private usersURL: string;
+	private logOutURL: string;
 
 	constructor( private http: Http )
 	{
 		this.userSubject = new Subject<User>();
 		this.userState = this.userSubject.asObservable();
 		this.logInURL = `${AppGlobals.APIURI}/sign-in`;
+		this.logOutURL = `${AppGlobals.APIURI}/logout`;
 		this.usersURL = `${AppGlobals.APIURI}/users`;
 	}
-
+/*
 	public getSessionStorageUser(): void
 	{
 		let userString: string = sessionStorage.getItem( "user" );
@@ -52,12 +50,24 @@ export class UserService
 			sessionStorage.setItem( "user", JSON.stringify( user ) );
 		this.userSubject.next( <User>user );
 	}
+*/
 
-	public logOut(): void
+	public setToken( token: any ): void
 	{
+		sessionStorage.setItem( "token", JSON.stringify( token ) );
+		AppGlobals.URIHEADERS.append("Authorization", token);
+		console.log("SetToken: \n", AppGlobals.URIHEADERS);
+	}
+	
+	public deleteToken(): void {
 		sessionStorage.removeItem( "token" );
-		this.setUser( new User( {} ) );
-		AppGlobals.URIHEADERS = new Headers( { "Content-Type": "application/json", "Accept": "application/json" } );
+		AppGlobals.URIHEADERS.delete("Authorization");
+	}
+	
+	public refreshToken( token: any ): void
+	{
+		this.deleteToken();
+		this.setToken(token);
 	}
 
 	// Handle errors
@@ -77,16 +87,23 @@ export class UserService
 		return Observable.throw( errMsg );
 	}
 
-	public setToken( token: any ): void
-	{
-		sessionStorage.setItem( "token", JSON.stringify( token ) );
-		AppGlobals.URIHEADERS.set( "Authorization", token );
-	}
-
 	public logIn( email: any, password: any ): Observable<any>
 	{
 		return this.http.post( this.logInURL, {email, password}, { headers: AppGlobals.URIHEADERS } )
 			.map( response => response.json().token )
+			.catch( this.handleError );
+	}
+	
+	public logOut(): Observable<any>
+	{
+		console.log("AppGlobals.URIHEADERS -> BEFORE this.deleteToken()\n", AppGlobals.URIHEADERS);
+		let logoutHeader = JSON.parse(JSON.stringify(AppGlobals.URIHEADERS));
+		console.log("logoutHeader -> BEFORE this.deleteToken()\n", logoutHeader);
+		this.deleteToken();
+		console.log("logoutHeader -> AFTER this.deleteToken()\n", logoutHeader);
+		console.log("AppGlobals.URIHEADERS -> AFTER this.deleteToken()\n", AppGlobals.URIHEADERS);
+		return this.http.get( this.logOutURL, { headers: logoutHeader } )
+			.map( response => response.json() )
 			.catch( this.handleError );
 	}
 

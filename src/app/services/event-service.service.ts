@@ -55,12 +55,6 @@ export class EventServiceService {
 
 		return Observable.throw( errMsg );
 	}
-
-	public setToken( token: any ): void
-	{
-		sessionStorage.setItem( "token", JSON.stringify( token ) );
-		AppGlobals.URIHEADERS.set( "Authorization", token );
-	}
        
 	public update( event: Event ): Observable<any>
 	{
