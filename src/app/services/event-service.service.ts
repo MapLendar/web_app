@@ -15,29 +15,41 @@ export class EventServiceService {
   private usersURL: string; 	
   private eventsURL: string; 
 
-  constructor(private http: Http) { 
+  constructor(private _http: Http, private http: Http) { 
 	this.logInURL = `${AppGlobals.APIURI}/sign-in`;
  	this.usersURL = `${AppGlobals.APIURI}/users`;
-    this.eventsURL = `${AppGlobals.APIURI}/events`;
+        this.eventsURL = `${AppGlobals.APIURI}/events`;
   }
   
+  postJSON(){
+//	var json =JSON.stringify({name: event.name, description: event.description, site_id: event.site_id, start_time: event.start_time, end_time: event.end_time });
+//	var params ='json=' + json;
+//	var headers = new Headers();
+//	return this._http.post( `${this.eventsURL}`, params, { headers: AppGlobals.URIHEADERS } )
+//			.map( response => response.json() );
+		
+	
+	}
+
   public crear( event: Event ): Observable<any>
-	{		
-		return this.http.post( `${this.eventsURL}`, { name: event.name, description: event.description, site_id: event.site_id, start_time: event.start_time, end_time: event.end_time }, { headers: AppGlobals.URIHEADERS } )
-			.map( response => response.json().user )
+	{	
+		var json = JSON.stringify({name: event.name, description: event.description, site_id: event.site_id, start_time: event.start_time, end_time: event.end_time });
+		var params = 'json=' + json;	
+		return this.http.post( `${this.eventsURL}`,  params, { headers: AppGlobals.URIHEADERS } )
+			.map( response => response.json().event )
 			.catch( this.handleError );
 	}
 
-  createEvent( name, description, site_id, start_time, end_time, owner_id) { 
-	let body = { name: name, description: description, site_id: site_id, start_time: start_time, end_time: end_time, owner_id: owner_id}
-	let headers = new Headers({ 'ContentType': 'application/json' });
-	let options = new RequestOptions({ headers: headers });
-	return this.http.post('http://192.168.99.101:6000/events', body, options).map((response:
-	Response) => {
-	console.log(response.json());
-	response.json();
-   })
-  }
+  //createEvent( name, description, site_id, start_time, end_time) { 
+  //let body = { name: name, description: description, site_id: site_id, start_time: start_time, end_time: end_time}
+	//let headers = new Headers({ 'ContentType': 'application/json' });
+	//let options = new RequestOptions({ headers: headers });
+	//return this.http.post('http://192.168.99.101:6000/events', body, options).map((response:
+	//Response) => {
+	//console.log(response.json());
+	//response.json();
+   //})
+ // }
 
 	// Handle errors
 	private handleError( error: Response | any )
@@ -55,6 +67,12 @@ export class EventServiceService {
 
 		return Observable.throw( errMsg );
 	}
+
+	public setToken( token: any ): void
+	{
+		sessionStorage.setItem( "token", JSON.stringify( token ) );
+		AppGlobals.URIHEADERS.set( "Authorization", token );
+	}
        
 	public update( event: Event ): Observable<any>
 	{
@@ -64,15 +82,14 @@ export class EventServiceService {
 	}
 
 	public events(): Observable<any>
-	{		
-		return this.http.get( `${this.eventsURL}`, { headers: AppGlobals.URIHEADERS } )
-			.map( response => response )
-			.catch( this.handleError );
-    }
-    
-    public setEvents(events: any): void
-	{		
-		sessionStorage.setItem( "events", JSON.stringify( events ) );
-	}
-
+		{		
+			return this.http.get( `${this.eventsURL}`, { headers: AppGlobals.URIHEADERS } )
+				.map( response => response )
+				.catch( this.handleError );
+	    }
+	    
+	    public setEvents(events: any): void
+		{		
+			sessionStorage.setItem( "events", JSON.stringify( events ) );
+		}
 }

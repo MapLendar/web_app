@@ -7,7 +7,7 @@
                </div>
         </div> 
         <div class="main-login main-center">
-            <form class="form-horizontal" [formGroup] = "registerForm" (ngSubmit) = "createEvent()">
+            <form class="form-horizontal" [formGroup] = "registerForm" (ngSubmit) = "crear()">
                 
                 <div class="form-group">
                     <label for="name" class="cols-sm-2 control-label">Nombre</label>
@@ -90,7 +90,7 @@
 
                 <div class="form-group ">
                    
-		    <button (click)="createEvent(name.value, description.value, site_id.value, start_time.value, end_time.value, owner_id.value)" type="submit" class="btn btn-primary btn-lg btn-block">Crear Evento</button>
+		           <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Crear Evento</button>
 
                 </div>
                
