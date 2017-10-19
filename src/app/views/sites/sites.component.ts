@@ -16,8 +16,8 @@ export class SitesComponent implements OnInit{
   constructor(private userService: UserService, private sitesService: SitesService)
 	{
 		this.sites = [
-      // {image: "asdas", description:"12345", name:"nameaa"},
-      // {image: "asdas", description:"12345", name:"nameaa"}
+       {image: "asdas", longitude:123.2, latitude:12.1 , name:"nameaa"},
+//       {image: "asdas", description:"12345", name:"nameaa"}
     ];
   }
 

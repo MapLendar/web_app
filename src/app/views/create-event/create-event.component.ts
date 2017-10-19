@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from "@angular/forms"; 	
 import { Http, Request, RequestMethod, RequestOptions, Headers } from '@angular/http';
-
-import { EventServiceService } from '../../services/event-service.service'; 
-import { Event } from "../../models/event.model";
 import { Router } from '@angular/router';
+import { EventServiceService } from '../../services/event-service.service'; 
+import { UserService } from '../../services/user.service';
+import { Event } from "../../models/event.model";
+import { Site } from "../../models/site.model";
+import { SitesService } from '../../services/sites.service';
+
 
 @Component({
   selector: 'app-create-event',
@@ -13,20 +16,24 @@ import { Router } from '@angular/router';
 })
 export class CreateEventComponent implements OnInit {
   event: Event; 
+  sites: Array<Site>;
   registerForm: FormGroup;
   submitted = false;
-  
   constructor(
      private eventServiceService: EventServiceService,
+     private userService: UserService,
+     private siteService: SitesService,
      private http: Http,
      private formBuilder: FormBuilder, 
      private router: Router,
   ) {
      this.event = new Event( {} );
+     this.sites = new Array<Site>();
      this.registerForm = this.createRegisterForm();
      }
 
   ngOnInit() {
+    
   }
 
     private crear(): void

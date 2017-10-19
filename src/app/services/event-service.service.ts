@@ -15,7 +15,7 @@ export class EventServiceService {
   private usersURL: string; 	
   private eventsURL: string; 
 
-  constructor(private http: Http) { 
+  constructor(	private http: Http) { 
 	this.logInURL = `${AppGlobals.APIURI}/sign-in`;
  	this.usersURL = `${AppGlobals.APIURI}/users`;
         this.eventsURL = `${AppGlobals.APIURI}/events`;
@@ -28,7 +28,7 @@ export class EventServiceService {
 		var json = JSON.stringify({name: event.name, description: event.description, site_id: event.site_id, start_time: event.start_time, end_time: event.end_time });
 		var params = 'json=' + json;	
 		return this.http.post( `${this.eventsURL}`,  params, { headers: AppGlobals.URIHEADERS } )
-			.map( response => response.json().event )
+			.map( response => response.json().data )
 			.catch( this.handleError );
 	}
 
@@ -73,5 +73,10 @@ export class EventServiceService {
 	    public setEvents(events: any): void
 		{		
 			sessionStorage.setItem( "events", JSON.stringify( events ) );
+		}
+
+		public setEvent(event: Event):void 
+		{
+			sessionStorage.setItem( "events", JSON.stringify( event ) );
 		}
 }
