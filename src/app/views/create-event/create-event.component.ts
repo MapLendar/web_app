@@ -15,14 +15,12 @@ export class CreateEventComponent implements OnInit {
   event: Event; 
   registerForm: FormGroup;
   submitted = false;
-  postData:string;
-
+  
   constructor(
      private eventServiceService: EventServiceService,
      private http: Http,
      private formBuilder: FormBuilder, 
      private router: Router,
-//     private _httpService:EventServiceService	
   ) {
      this.event = new Event( {} );
      this.registerForm = this.createRegisterForm();
@@ -31,30 +29,13 @@ export class CreateEventComponent implements OnInit {
   ngOnInit() {
   }
 
-  onPost(){
-	//this._httpService.postJSON().subscribe(
-	//		data => this.postData = JSON.stringify(data),
-	//		error => alert(error),
-	//		() => console.log("Finished")	
-	//	);
-	}  
-	
-  private crear(): void
+    private crear(): void
 	{
     if( this.registerForm.invalid )
     return;
 
     this.submitted = true;
-    //this.event.name = this.registerForm.get.name; 
-  //  console.log(event)	
-   // this.event.name = this.registerForm.value.name; 
-    //this.event.description = this.registerForm.value.description;
-    //this.event.site_id = this.registerForm.value.site_id;
-    //this.event.start_time = this.registerForm.value.start_time;
-    //this.event.end_time = this.registerForm.value.end_time;
-    
-
-
+  
     console.log(this.eventServiceService.crear( this.event ).subscribe(
       
       data => {
@@ -66,11 +47,6 @@ export class CreateEventComponent implements OnInit {
     ));
   }
 
-  //createEvent(name, description, site_id, start_time, end_time) {
-    //  this.eventServiceService.createEvent(name, description, site_id, start_time, end_time).subscribe(res => {
-      //console.log(res)
-   //})
- // }
   
   private createRegisterForm(): FormGroup
 	{
