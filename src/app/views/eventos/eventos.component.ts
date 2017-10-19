@@ -15,8 +15,8 @@ export class EventosComponent implements OnInit {
     constructor(private userService: UserService, private eventsService: EventServiceService)
     {
       this.events = [
-        // {description:"12345", name:"nameaa"},
-        // {description:"12345", name:"nameaa"}
+        {image: "asdas", description:"12345", name:"nameaa"},
+        {image: "asdas", description:"12345", name:"nameaa"}
       ];
     }
   
