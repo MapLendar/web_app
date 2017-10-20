@@ -87,4 +87,18 @@ export class EventServiceService {
 			.map( response => response )
 			.catch( this.handleError );
 	}
+
+	public getMyInvitations(): Observable<any>
+	{		
+		return this.http.get( `${this.eventsURL}/myInvitations`, { headers: this.app.URIHEADERS } )
+			.map( response => response )
+			.catch( this.handleError );
+	}
+
+	public confirmStatus(eventId: any, status: any): Observable<any>
+	{		
+		return this.http.put( `${this.eventsURL}/${eventId}/attendance`, { status: status }, { headers: this.app.URIHEADERS } )
+		.map( response => response.json().data )
+		.catch( this.handleError );
+	}
 }

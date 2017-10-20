@@ -7,6 +7,7 @@ import { RegisterComponent } from "../views/register/register.component";
 import { CreateEventComponent } from "../views/create-event/create-event.component";
 import { SitesComponent } from "../views/sites/sites.component";
 import { EventosComponent } from "../views/eventos/eventos.component";
+import { InvitationsComponent } from "../views/invitations/invitations.component";
 
 
 //import { PageNotFoundComponent }    from './not-found.component';
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'myEvents',
     component: EventosComponent
+  },
+  {
+    path: 'myInvitations',
+    component: InvitationsComponent
   },
   { path: '',   redirectTo: '', pathMatch: 'full' }
 //  { path: '**', component: PageNotFoundComponent }
