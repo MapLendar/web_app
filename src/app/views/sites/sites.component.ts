@@ -8,7 +8,13 @@ import { OnInit } from '@angular/core';
 @Component({
   selector: 'app-sites',
   templateUrl: './sites.component.html',
-  styleUrls: ['./sites.component.sass']
+  styleUrls: ['./sites.component.sass'],
+})
+
+@Component({
+  selector: 'app-eventos',
+  templateUrl: '../eventos/eventos.component.html',
+  styleUrls: ['../eventos/eventos.component.sass'],
 })
 export class SitesComponent implements OnInit{
   sites: any;
@@ -16,8 +22,8 @@ export class SitesComponent implements OnInit{
   constructor(private userService: UserService, private sitesService: SitesService)
 	{
 		this.sites = [
-       {image: "asdas", longitude:123.2, latitude:12.1 , name:"nameaa"},
-//       {image: "asdas", description:"12345", name:"nameaa"}
+      {image: "asdas", description:"12345", name:"nameaa"},
+      {image: "asdas", description:"12345", name:"nameaa"}
     ];
   }
 
