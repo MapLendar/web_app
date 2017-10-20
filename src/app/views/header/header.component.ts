@@ -13,6 +13,7 @@ import { UserService } from '../../services/user.service';
 })
 export class HeaderComponent {
   constructor (public app: AppGlobals, private userService: UserService, private router: Router )  {
+    this.userService.getSessionStorageUser();
   }
   
   private logout(): void{

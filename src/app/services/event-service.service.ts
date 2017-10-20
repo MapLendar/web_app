@@ -15,17 +15,18 @@ export class EventServiceService {
   private usersURL: string; 	
   private eventsURL: string; 
 
-  constructor(	private http: Http) { 
+  constructor(	private http: Http, public app: AppGlobals ) { 
 	this.logInURL = `${AppGlobals.APIURI}/sign-in`;
  	this.usersURL = `${AppGlobals.APIURI}/users`;
-        this.eventsURL = `${AppGlobals.APIURI}/events`;
+    this.eventsURL = `${AppGlobals.APIURI}/events`;
   }
   
 
 
   public create( event: Event ): Observable<any>
-	{		
-		return this.http.post( `${this.eventsURL}`,  {name: event.name, description: event.description, site_id: event.site_id, start_time: event.start_time, end_time: event.end_time }, { headers: AppGlobals.URIHEADERS } )
+	{
+		console.log(this.app.URIHEADERS);
+		return this.http.post( `${this.eventsURL}`,  {name: event.name, description: event.description, site_id: event.site_id, start_time: event.start_time, end_time: event.end_time }, { headers: this.app.URIHEADERS } )
 			.map( response => response.json().data )
 			.catch( this.handleError );
 	}
@@ -51,13 +52,13 @@ export class EventServiceService {
 	public setToken( token: any ): void
 	{
 		sessionStorage.setItem( "token", JSON.stringify( token ) );
-		AppGlobals.URIHEADERS.set( "Authorization", token );
+		this.app.URIHEADERS.set( "Authorization", token );
 	}
 	   
 	
 	public update( event: Event ): Observable<any>
 	{
-		return this.http.put( `${this.eventsURL}`, { data: event }, { headers: AppGlobals.URIHEADERS } )
+		return this.http.put( `${this.eventsURL}`, { data: event }, { headers: this.app.URIHEADERS } )
 			.map( response => response.json().data )
 			.catch( this.handleError );
 	}
@@ -69,21 +70,21 @@ export class EventServiceService {
 
 	public events(): Observable<any>
 	{		
-		return this.http.get( `${this.eventsURL}/`, { headers: AppGlobals.URIHEADERS } )
+		return this.http.get( `${this.eventsURL}/`, { headers: this.app.URIHEADERS } )
 			.map( response => response )
 			.catch( this.handleError );
 	}
 
 	public eventsBySite(siteId: any): Observable<any>
 	{		
-		return this.http.get( `${this.eventsURL}/site/${siteId}`, { headers: AppGlobals.URIHEADERS } )
+		return this.http.get( `${this.eventsURL}/site/${siteId}`, { headers: this.app.URIHEADERS } )
 			.map( response => response )
 			.catch( this.handleError );
 	}
 
 	public myEvents(): Observable<any>
 	{		
-		return this.http.get( `${this.eventsURL}/myEvents`, { headers: AppGlobals.URIHEADERS } )
+		return this.http.get( `${this.eventsURL}/myEvents`, { headers: this.app.URIHEADERS } )
 			.map( response => response )
 			.catch( this.handleError );
 	}

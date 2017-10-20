@@ -13,14 +13,14 @@ export class SitesService
 {
 	private sitesURL: string;
 
-	constructor( private http: Http )
+	constructor( private http: Http, public app: AppGlobals )
 	{
 		this.sitesURL = `${AppGlobals.APIURI}/sites`;
     }
     
     public sites(): Observable<any>
 	{		
-		return this.http.get( `${this.sitesURL}`, { headers: AppGlobals.URIHEADERS } )
+		return this.http.get( `${this.sitesURL}`, { headers: this.app.URIHEADERS } )
 			.map( response => response )
 			.catch( this.handleError );
     }
