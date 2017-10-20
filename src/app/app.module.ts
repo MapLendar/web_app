@@ -19,12 +19,13 @@ import { CalendarComponent } from "./views/calendar/calendar.component";
 import { CreateEventComponent } from './views/create-event/create-event.component';
 import { EventosComponent } from './views/eventos/eventos.component';
 import { SitesComponent } from './views/sites/sites.component';
+import { InvitationsComponent } from './views/invitations/invitations.component';
 
 
 import { UserService } from "./services/user.service";
 import { SitesService } from "./services/sites.service";
 import { EventServiceService } from './services/event-service.service';
-
+import { UserProfileComponent } from './views/login/userprofile.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { EventServiceService } from './services/event-service.service';
     CalendarComponent,
     CreateEventComponent,
     EventosComponent,
-    SitesComponent
+    SitesComponent,
+    InvitationsComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
