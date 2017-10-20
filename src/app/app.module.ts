@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
-
 import { Router } from '@angular/router';
+
+import { NguiMapModule} from '@ngui/map';
 
 import { AppGlobals } from './app.settings'
 import { AppComponent } from './app.component';
@@ -44,6 +45,7 @@ import { EventServiceService } from './services/event-service.service';
     AppRouter,
     FormsModule,
     ReactiveFormsModule,
+		NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyC-f5ER_apawz40mq9fOyXchgZQiuiE_n8&libraries=visualization&callback=initMap'}),
     HttpModule
   ],
   providers: [

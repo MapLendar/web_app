@@ -1,2 +1,23 @@
-<p>TODO: map component</p>
-
+<div class="map">
+    <ngui-map 
+      (mapReady$)="initMap($event)"
+      (window:resize)="onResize($event)"
+      [zoom]="zoom"
+      [center]="coords"
+      [scrollwheel]="scrollmap">
+        <ng-container *ngFor="let event of events">
+          <marker 
+            [position]="position(event.site_id)"
+            (click)="nearUserClicked($event, event)"
+            [icon]="{
+                      url: 'https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_person_pin_circle_black_48px.svg',
+                      anchor: [16,16],
+                      size: [32,32],
+                      scaledSize: [32,32]
+                    }"
+            draggable="false">
+            
+          </marker>
+        </ng-container>
+    </ngui-map>
+</div>
