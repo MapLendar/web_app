@@ -55,7 +55,8 @@ export class EventServiceService {
 		sessionStorage.setItem( "token", JSON.stringify( token ) );
 		AppGlobals.URIHEADERS.set( "Authorization", token );
 	}
-       
+	   
+	
 	public update( event: Event ): Observable<any>
 	{
 		return this.http.put( `${this.eventsURL}`, { data: event }, { headers: AppGlobals.URIHEADERS } )

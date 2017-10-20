@@ -22,7 +22,7 @@ export class CreateEventComponent implements OnInit {
   constructor(
      private eventServiceService: EventServiceService,
      private userService: UserService,
-     private siteService: SitesService,
+     private sitesService: SitesService,
      private http: Http,
      private formBuilder: FormBuilder, 
      private router: Router,
@@ -32,9 +32,20 @@ export class CreateEventComponent implements OnInit {
      this.registerForm = this.createRegisterForm();
      }
 
-  ngOnInit() {
+     ngOnInit() {
+      this.sitesService.sites().subscribe(
+        data => {
+          if(data){
+            this.sites = data.json().sites;
+            
+            //this.userService.refreshToken(data.json().token); //-->This endpoint doesn't return a token
+            
+          }
+        },
+        err => console.log(err)
+      );
     
-  }
+    }
 
     private crear(): void
 	{
