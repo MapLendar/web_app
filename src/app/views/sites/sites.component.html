@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
          <div class="col-sm-6 col-md-3" *ngFor="let site of sites">
-            <div class="panel panel-default panel-card">
+            <div class="panel panel-default panel-card" [ngClass]="{'shadow-class': site.id==selectedSiteId}">
                 <div class="panel-heading">
                     <img src="{{ site.image }}" />
                     <button (click)="setSiteId(site.id)" class="btn btn-success btn-sm" role="button">Ver Eventos</button>
@@ -24,4 +24,4 @@
         </div>
     </div>
 </div>
-<div *ngIf="eventsOf"><app-eventos [selectedSiteId]="selectedSiteId"></app-eventos></div>
+<div *ngIf="eventsOf"><h2 class="text-center" style="margin-top: 40px; margin-bottom:40px;">Lista de eventos disponibles</h2><app-eventos [selectedSiteId]="selectedSiteId"></app-eventos></div>
