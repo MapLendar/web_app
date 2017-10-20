@@ -45,9 +45,9 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-address-card fa" aria-hidden="true"></i></span>
                             <!--<input type="number" class="form-control" name="site_id" id="site_id"  placeholder="Ingresa el lugar del evento" formControlName = "site_id" [(ngModel)] = "event.site_id"/>-->
-				<select formControlName = "site_id" [(ngModel)]="event.site_id">
-					 <option *ngFor="let m of sites" [value]="m.id" formControlName = "site_id" [selected]="event.site_id.id == m.id">{{m.name}}</option>
-				</select>
+            				<select class="form-control" formControlName = "site_id" [(ngModel)]="event.site_id">
+            					 <option *ngFor="let m of sites" [value]="m.id">{{m.name}}</option>
+            				</select>
                         </div>
                         <span *ngIf = "registerForm.controls.site_id.errors" class = "tooltip-content">
                             <div [hidden] = "!registerForm.controls.site_id.errors.required">

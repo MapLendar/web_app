@@ -1,5 +1,9 @@
-<p>here is the body</p>
-
-<div *ngIf="app.isLoggedIn()">
-    yay! you're logged in
-</div>
+<main>
+    <ng-container *ngIf="app.isLoggedIn();else notLoggedIn" >
+        
+        
+    </ng-container>
+    <ng-template #notLoggedIn>
+        
+    </ng-template>
+</main>

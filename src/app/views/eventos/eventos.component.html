@@ -4,10 +4,10 @@
 				<ul class="event-list">
 					<li>
 						<time datetime="2014-07-20">
-							<span class="day">-</span>
-							<span class="month">--</span>
+							<span class="day">{{ toDay(event.start_time) }}</span>
+							<span class="month">{{ toMonth(event.start_time) }}</span>
 						</time>
-						<img alt="" src="http://1.bp.blogspot.com/-pGhcdlb6f-4/U2b4BLo4v9I/AAAAAAAAIvo/V1bQLXkypnM/s1600/1-nuevo-edificio-facultad-enfermeria-campus-UNAL-sede-bogota.jpg" />						
+						<img alt="" src="http://blogs.elespectador.com/wp-content/uploads/2013/07/campus-universidad-nacional-bogot%C3%A1.jpg" />						
 						<div class="info">
 							<h2 class="title">{{ event.name }}</h2>
 							<p class="desc">{{ event.description }}</p>

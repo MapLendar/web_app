@@ -11,20 +11,24 @@ import { OnInit } from '@angular/core';
   styleUrls: ['./sites.component.sass'],
 })
 
-@Component({
-  selector: 'app-eventos',
-  templateUrl: '../eventos/eventos.component.html',
-  styleUrls: ['../eventos/eventos.component.sass'],
-})
 export class SitesComponent implements OnInit{
   sites: any;
+  eventsOf: boolean;
+  selectedSiteId: any;
 
   constructor(private userService: UserService, private sitesService: SitesService)
 	{
 		this.sites = [
-      {image: "asdas", description:"12345", name:"nameaa"},
-      {image: "asdas", description:"12345", name:"nameaa"}
+      // {image: "http://1.bp.blogspot.com/-pGhcdlb6f-4/U2b4BLo4v9I/AAAAAAAAIvo/V1bQLXkypnM/s1600/1-nuevo-edificio-facultad-enfermeria-campus-UNAL-sede-bogota.jpg", description:"12345", name:"nameaa"},
+      // {image: "http://1.bp.blogspot.com/-pGhcdlb6f-4/U2b4BLo4v9I/AAAAAAAAIvo/V1bQLXkypnM/s1600/1-nuevo-edificio-facultad-enfermeria-campus-UNAL-sede-bogota.jpg", description:"12345", name:"nameaa"}
     ];
+
+    this.eventsOf = null;
+  }
+
+  setSiteId(id){
+    this.selectedSiteId = id;
+    this.eventsOf = true;
   }
 
   ngOnInit() {

@@ -54,12 +54,14 @@ export class CreateEventComponent implements OnInit {
 
     this.submitted = true;
   
-    console.log(this.eventServiceService.crear( this.event ).subscribe(
+    console.log(this.eventServiceService.create( this.event ).subscribe(
       
       data => {
         if(data){
-          this.router.navigate(['/myEvents']);
+          console.log("New Token: ", data.json().token)
+          console.log("NEW EVENT::MESSAGE: ", data.json().message)
           this.userService.refreshToken(data.json().token);
+          this.router.navigate(['/events']);
         } 
       },
       err => console.log(err)

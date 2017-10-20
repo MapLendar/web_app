@@ -15,21 +15,18 @@ export class EventServiceService {
   private usersURL: string; 	
   private eventsURL: string; 
 
-  constructor(	private http: Http) { 
+  constructor(	private http: Http, public app: AppGlobals ) { 
 	this.logInURL = `${AppGlobals.APIURI}/sign-in`;
  	this.usersURL = `${AppGlobals.APIURI}/users`;
-        this.eventsURL = `${AppGlobals.APIURI}/events`;
+    this.eventsURL = `${AppGlobals.APIURI}/events`;
   }
   
 
 
-  public crear( event: Event ): Observable<any>
-	{	
-		//var json = JSON.stringify({name: event.name, description: event.description, site_id: event.site_id, start_time: event.start_time, end_time: event.end_time });
-		var json = {name: event.name, description: event.description, site_id: event.site_id, start_time: event.start_time, end_time: event.end_time };
-		//var params = 'json=' + json;	
-		return this.http.post( `${this.eventsURL}`,  json, { headers: AppGlobals.URIHEADERS } )
-			.map( response => response.json().data )
+  public create( event: Event ): Observable<any>
+	{
+		return this.http.post( `${this.eventsURL}`,  {name: event.name, description: event.description, site_id: event.site_id, start_time: event.start_time, end_time: event.end_time }, { headers: this.app.URIHEADERS } )
+			.map( response => response )
 			.catch( this.handleError );
 	}
 
@@ -54,31 +51,54 @@ export class EventServiceService {
 	public setToken( token: any ): void
 	{
 		sessionStorage.setItem( "token", JSON.stringify( token ) );
-		AppGlobals.URIHEADERS.set( "Authorization", token );
+		this.app.URIHEADERS.set( "Authorization", token );
 	}
 	   
 	
 	public update( event: Event ): Observable<any>
 	{
-		return this.http.put( `${this.eventsURL}`, { data: event }, { headers: AppGlobals.URIHEADERS } )
+		return this.http.put( `${this.eventsURL}`, { data: event }, { headers: this.app.URIHEADERS } )
 			.map( response => response.json().data )
 			.catch( this.handleError );
 	}
+	
+	public setEvents(events: any): void
+	{		
+		sessionStorage.setItem( "events", JSON.stringify( events ) );
+	}
 
 	public events(): Observable<any>
-		{		
-			return this.http.get( `${this.eventsURL}`, { headers: AppGlobals.URIHEADERS } )
-				.map( response => response )
-				.catch( this.handleError );
-	    }
-	    
-	    public setEvents(events: any): void
-		{		
-			sessionStorage.setItem( "events", JSON.stringify( events ) );
-		}
+	{		
+		return this.http.get( `${this.eventsURL}/`, { headers: this.app.URIHEADERS } )
+			.map( response => response )
+			.catch( this.handleError );
+	}
 
-		public setEvent(event: Event):void 
-		{
-			sessionStorage.setItem( "event", JSON.stringify( event ) );
-		}
+	public eventsBySite(siteId: any): Observable<any>
+	{		
+		return this.http.get( `${this.eventsURL}/site/${siteId}`, { headers: this.app.URIHEADERS } )
+			.map( response => response )
+			.catch( this.handleError );
+	}
+
+	public myEvents(): Observable<any>
+	{		
+		return this.http.get( `${this.eventsURL}/myEvents`, { headers: this.app.URIHEADERS } )
+			.map( response => response )
+			.catch( this.handleError );
+	}
+
+	public getMyInvitations(): Observable<any>
+	{		
+		return this.http.get( `${this.eventsURL}/myInvitations`, { headers: this.app.URIHEADERS } )
+			.map( response => response )
+			.catch( this.handleError );
+	}
+
+	public confirmStatus(eventId: any, status: any): Observable<any>
+	{		
+		return this.http.put( `${this.eventsURL}/${eventId}/attendance`, { status: status }, { headers: this.app.URIHEADERS } )
+		.map( response => response.json().data )
+		.catch( this.handleError );
+	}
 }

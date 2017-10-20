@@ -17,7 +17,7 @@ export class UserService
 	private usersURL: string;
 	private logOutURL: string;
 
-	constructor( private http: Http )
+	constructor( private http: Http, public app: AppGlobals )
 	{
 		this.userSubject = new Subject<User>();
 		this.userState = this.userSubject.asObservable();
@@ -25,25 +25,25 @@ export class UserService
 		this.logOutURL = `${AppGlobals.APIURI}/logout`;
 		this.usersURL = `${AppGlobals.APIURI}/users`;
 	}
-/*
+
 	public getSessionStorageUser(): void
 	{
-		let userString: string = sessionStorage.getItem( "user" );
-		let user: User;
-		if( userString )
+		let token: string = sessionStorage.getItem( "token" );
+		//let user: User;
+		if( token )
 		{
-			let data: any = { data: JSON.parse( userString ) };
-			data.token = data.data.token;
-			delete data.data.token;
-			user = new User( data );
-			if( !AppGlobals.URIHEADERS.has( "Authorization" ) )
-				AppGlobals.URIHEADERS.set( "Authorization", user.token );
+			//let data: any = { data: JSON.parse( userString ) };
+			//data.token = data.data.token;
+			//delete data.data.token;
+			//user = new User( data );
+			if( !this.app.URIHEADERS.has( "Authorization" ) )
+				this.setToken(token.replace(/['"]+/g, ''));
 		}
-		else
-			user = new User( {} );
-		this.setUser( user );
+		//else
+		//	user = new User( {} );
+		//this.setUser( user );
 	}
-
+/*
 	public setUser( user: User, save: boolean = false ): void
 	{
 		if( user.token && save )
@@ -55,13 +55,13 @@ export class UserService
 	public setToken( token: any ): void
 	{
 		sessionStorage.setItem( "token", JSON.stringify( token ) );
-		AppGlobals.URIHEADERS.append("Authorization", token);
-		console.log("SetToken: \n", AppGlobals.URIHEADERS);
+		this.app.URIHEADERS.append("Authorization", token);
+		console.log("SetToken: \n", this.app.URIHEADERS);
 	}
 	
 	public deleteToken(): void {
 		sessionStorage.removeItem( "token" );
-		AppGlobals.URIHEADERS.delete("Authorization");
+		this.app.URIHEADERS.delete("Authorization");
 	}
 	
 	public refreshToken( token: any ): void
@@ -89,14 +89,14 @@ export class UserService
 
 	public logIn( email: any, password: any ): Observable<any>
 	{
-		return this.http.post( this.logInURL, {email, password}, { headers: AppGlobals.URIHEADERS } )
+		return this.http.post( this.logInURL, {email, password}, { headers: this.app.URIHEADERS } )
 			.map( response => response.json().token )
 			.catch( this.handleError );
 	}
 	
 	public logOut(): Observable<any>
 	{
-		let logoutHeader = JSON.parse(JSON.stringify(AppGlobals.URIHEADERS));
+		let logoutHeader = JSON.parse(JSON.stringify(this.app.URIHEADERS));
 		this.deleteToken();
 		sessionStorage.clear();
 		return this.http.get( this.logOutURL, { headers: logoutHeader } )
@@ -106,14 +106,14 @@ export class UserService
 
 	public create( user: User, password: string, password_confirmation: string ): Observable<any>
 	{		
-		return this.http.post( `${this.usersURL}`, { first_name: user.first_name, last_name: user.last_name,password, email: user.email, age: user.age, password_confirmation }, { headers: AppGlobals.URIHEADERS } )
+		return this.http.post( `${this.usersURL}`, { first_name: user.first_name, last_name: user.last_name,password, email: user.email, age: user.age, password_confirmation }, { headers: this.app.URIHEADERS } )
 			.map( response => response.json().user )
 			.catch( this.handleError );
 	}
 
 	public update( user: User ): Observable<any>
 	{
-		return this.http.put( `${this.usersURL}`, { data: user }, { headers: AppGlobals.URIHEADERS } )
+		return this.http.put( `${this.usersURL}`, { data: user }, { headers: this.app.URIHEADERS } )
 			.map( response => response.json().data )
 			.catch( this.handleError );
 	}
