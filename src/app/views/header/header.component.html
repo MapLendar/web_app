@@ -21,11 +21,11 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <ng-container *ngIf="!app.isLoggedIn();else right_loggedIn" >
-                    <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
-                    <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+                    <li><a routerLink="/login" routerLinkActive="active">Ingresar</a></li>
+                    <li><a routerLink="/register" routerLinkActive="active">Registrarse</a></li>
                 </ng-container>
                 <ng-template #right_loggedIn>
-                    <li><a routerLink="" routerLinkActive="active" (click)=logout()>Logout</a></li>
+                    <li><a routerLink="" routerLinkActive="active" (click)=logout()>Salir</a></li>
                 </ng-template>
             </ul>
         </div>

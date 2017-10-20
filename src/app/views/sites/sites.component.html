@@ -7,28 +7,16 @@
                     <button (click)="setSiteId(site.id)" class="btn btn-success btn-sm" role="button">Ver Eventos</button>
                 </div>
                 <div class="panel-figure">
-                    <img class="img-responsive img-circle" src="{{ site.image }}" />
+                    <img class="img-responsive img-circle" src="{{ site.image }}" style="height: 100%;" />
                 </div>
                 <div class="panel-body text-center">
-                    <h4 class="panel-header"><a href="https://twitter.com/maridlcrmn">{{ site.name }}</a></h4>
-                    <small>{{ site.description }}</small>
+                    <h4 class="panel-header">{{ site.name }}</h4>
                 </div>
                 <div class="panel-thumbnails">
                     <div class="row">
-                        <div class="col-xs-4">
-                            <div class="thumbnail">
-                                <!-- <img src="http://placemi.com/mzwlj/60x60" /> -->
-                            </div>
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="thumbnail">
+                        <div class="col-xs-12 text-center">
                                 <!-- <img src="http://placemi.com/yboaj/60x60" /> -->
-                            </div>
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="thumbnail">
-                                <!-- <img src="http://placemi.com/gv3bp/60x60" /> -->
-                            </div>
+                                <a href="http://www.google.com/search?q={{ site.name }}">Más Información</a>
                         </div>
                     </div>
                 </div>
@@ -36,4 +24,4 @@
         </div>
     </div>
 </div>
-<div *ngIf="eventsOf"><app-eventos [selectedSiteId]="selectedSite"></app-eventos></div>
+<div *ngIf="eventsOf"><app-eventos [selectedSiteId]="selectedSiteId"></app-eventos></div>

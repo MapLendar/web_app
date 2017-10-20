@@ -80,4 +80,11 @@ export class EventServiceService {
 			.map( response => response )
 			.catch( this.handleError );
 	}
+
+	public myEvents(): Observable<any>
+	{		
+		return this.http.get( `${this.eventsURL}/myEvents`, { headers: AppGlobals.URIHEADERS } )
+			.map( response => response )
+			.catch( this.handleError );
+	}
 }
