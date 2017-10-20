@@ -23,11 +23,9 @@ export class EventServiceService {
   
 
 
-  public crear( event: Event ): Observable<any>
-	{	
-		var json = JSON.stringify({name: event.name, description: event.description, site_id: event.site_id, start_time: event.start_time, end_time: event.end_time });
-		var params = 'json=' + json;	
-		return this.http.post( `${this.eventsURL}`,  params, { headers: AppGlobals.URIHEADERS } )
+  public create( event: Event ): Observable<any>
+	{		
+		return this.http.post( `${this.eventsURL}`,  {name: event.name, description: event.description, site_id: event.site_id, start_time: event.start_time, end_time: event.end_time }, { headers: AppGlobals.URIHEADERS } )
 			.map( response => response.json().data )
 			.catch( this.handleError );
 	}

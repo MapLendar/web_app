@@ -54,7 +54,7 @@ export class CreateEventComponent implements OnInit {
 
     this.submitted = true;
   
-    console.log(this.eventServiceService.crear( this.event ).subscribe(
+    console.log(this.eventServiceService.create( this.event ).subscribe(
       
       data => {
         if(data){
