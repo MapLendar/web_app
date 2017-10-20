@@ -25,9 +25,10 @@ export class EventServiceService {
 
   public crear( event: Event ): Observable<any>
 	{	
-		var json = JSON.stringify({name: event.name, description: event.description, site_id: event.site_id, start_time: event.start_time, end_time: event.end_time });
-		var params = 'json=' + json;	
-		return this.http.post( `${this.eventsURL}`,  params, { headers: AppGlobals.URIHEADERS } )
+		//var json = JSON.stringify({name: event.name, description: event.description, site_id: event.site_id, start_time: event.start_time, end_time: event.end_time });
+		var json = {name: event.name, description: event.description, site_id: event.site_id, start_time: event.start_time, end_time: event.end_time };
+		//var params = 'json=' + json;	
+		return this.http.post( `${this.eventsURL}`,  json, { headers: AppGlobals.URIHEADERS } )
 			.map( response => response.json().data )
 			.catch( this.handleError );
 	}
@@ -78,6 +79,6 @@ export class EventServiceService {
 
 		public setEvent(event: Event):void 
 		{
-			sessionStorage.setItem( "events", JSON.stringify( event ) );
+			sessionStorage.setItem( "event", JSON.stringify( event ) );
 		}
 }

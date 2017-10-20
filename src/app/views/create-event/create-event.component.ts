@@ -58,7 +58,8 @@ export class CreateEventComponent implements OnInit {
       
       data => {
         if(data){
-          this.router.navigate(['/events']);
+          this.router.navigate(['/myEvents']);
+          this.userService.refreshToken(data.json().token);
         } 
       },
       err => console.log(err)
