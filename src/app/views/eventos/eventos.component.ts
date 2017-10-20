@@ -23,7 +23,7 @@ export class EventosComponent implements OnInit {
       var date = dateTime[0].split("-");
       // var time = dateTime[1].split(":"); 
       //(year, month, day, hours, minutes, seconds, milliseconds)
-      return date[1];
+      return date[2];
     
     }
 
@@ -33,7 +33,7 @@ export class EventosComponent implements OnInit {
       // var time = dateTime[1].split(":"); 
       //(year, month, day, hours, minutes, seconds, milliseconds)
       var months = ["Enero", "Feb", "Marzo", "Abril", "Mayo", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic"]
-      return months[date[2]-1];
+      return months[date[1]-1];
     
     }
 
