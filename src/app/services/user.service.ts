@@ -51,6 +51,18 @@ export class UserService
 		this.userSubject.next( <User>user );
 	}
 */
+	public users(): Observable<any>
+	{		
+		return this.http.get( `${this.usersURL}`, { headers: this.app.URIHEADERS } )
+			.map( response => response )
+			.catch( this.handleError );
+	}
+
+	public setUsers(users: any): void
+	{		
+		sessionStorage.setItem( "users", JSON.stringify( users ) );
+	}
+
 
 	public setToken( token: any ): void
 	{

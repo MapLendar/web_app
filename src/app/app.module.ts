@@ -24,7 +24,7 @@ import { InvitationsComponent } from './views/invitations/invitations.component'
 import { UserService } from "./services/user.service";
 import { SitesService } from "./services/sites.service";
 import { EventServiceService } from './services/event-service.service';
-
+import { UserProfileComponent } from './views/login/userprofile.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { EventServiceService } from './services/event-service.service';
     CreateEventComponent,
     EventosComponent,
     SitesComponent,
-    InvitationsComponent
+    InvitationsComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
