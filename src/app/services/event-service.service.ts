@@ -63,21 +63,23 @@ export class EventServiceService {
 			.map( response => response.json().data )
 			.catch( this.handleError );
 	}
+	
+	public setEvents(events: any): void
+	{		
+		sessionStorage.setItem( "events", JSON.stringify( events ) );
+	}
 
 	public events(): Observable<any>
-		{		
-			return this.http.get( `${this.eventsURL}`, { headers: AppGlobals.URIHEADERS } )
-				.map( response => response )
-				.catch( this.handleError );
-	    }
-	    
-	    public setEvents(events: any): void
-		{		
-			sessionStorage.setItem( "events", JSON.stringify( events ) );
-		}
+	{		
+		return this.http.get( `${this.eventsURL}/`, { headers: AppGlobals.URIHEADERS } )
+			.map( response => response )
+			.catch( this.handleError );
+	}
 
-		public setEvent(event: Event):void 
-		{
-			sessionStorage.setItem( "events", JSON.stringify( event ) );
-		}
+	public eventsBySite(siteId: any): Observable<any>
+	{		
+		return this.http.get( `${this.eventsURL}/site/${siteId}`, { headers: AppGlobals.URIHEADERS } )
+			.map( response => response )
+			.catch( this.handleError );
+	}
 }
