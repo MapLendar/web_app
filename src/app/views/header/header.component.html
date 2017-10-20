@@ -15,7 +15,17 @@
             <ul class="nav navbar-nav">
                 <li><a routerLink="/" routerLinkActive="active">Home</a></li>
                 <ng-container *ngIf="app.isLoggedIn()" >
-                    <li><a routerLink="/myEvents" routerLinkActive="active">Mis Eventos</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Eventos
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a routerLink="/events" routerLinkActive="active">Crear evento</a></li>
+                            <li><a routerLink="/myEvents" routerLinkActive="active">Mis Eventos</a></li>                            
+                            
+                            <li><a href="#">.</a></li>
+                            <li><a href="#">.</a></li>
+                        </ul>
+                      </li>
                     <li><a routerLink="/sites" routerLinkActive="active">Sitios</a></li>
                 </ng-container>
             </ul>
