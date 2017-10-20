@@ -58,6 +58,9 @@ export class CreateEventComponent implements OnInit {
       
       data => {
         if(data){
+          console.log("New Token: ", data.json().token)
+          console.log("NEW EVENT::MESSAGE: ", data.json().message)
+          this.userService.refreshToken(data.json().token);
           this.router.navigate(['/events']);
         } 
       },
