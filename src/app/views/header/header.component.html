@@ -1,4 +1,4 @@
-<div class="navbar transparent navbar-inverse">
+<div class="navbar transparent navbar-inverse" style="color: white !important;background-color: #00bd54; border-color:#315441; border-radius: 0px;">
     <nav class="navbar-inner">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -8,34 +8,34 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" routerLink="/" routerLinkActive="active">MapLendar</a>
+            <a class="navbar-brand" routerLink="/" routerLinkActive="active"><img alt="Brand" width="30" src="/assets/logo.png"></a>
         </div>
         <!-- Collection of nav links and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+                <!-- <li><a class="white" routerLink="/" routerLinkActive="active">Home</a></li> -->
                 <ng-container *ngIf="app.isLoggedIn()" >
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a routerLink="/events" routerLinkActive="active">Crear evento</a></li>
-                            <li><a routerLink="/myEvents" routerLinkActive="active">Mis eventos</a></li>                            
-                            <li><a routerLink="/myInvitations" routerLinkActive="active">Mis invitaciones</a></li>
-                            <li><a routerLink="/map" routerLinkActive="active">Mapa</a></li>
-                            <li><a routerLink="/sites" routerLinkActive="active">Sitios</a></li>
+                            <li><a class="white" routerLink="/events" routerLinkActive="active">Crear evento</a></li>
+                            <li><a class="white" routerLink="/myEvents" routerLinkActive="active">Mis eventos</a></li>                            
+                            <li><a class="white" routerLink="/myInvitations" routerLinkActive="active">Mis invitaciones</a></li>
+                            <li><a class="white" routerLink="/map" routerLinkActive="active">Mapa</a></li>
+                            <li><a class="white" routerLink="/sites" routerLinkActive="active">Sitios</a></li>
                       </ul>
                     </li>
                 </ng-container>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <ng-container *ngIf="!app.isLoggedIn();else right_loggedIn" >
-                    <li><a routerLink="/login" routerLinkActive="active">Ingresar</a></li>
-                    <li><a routerLink="/register" routerLinkActive="active">Registrarse</a></li>
+                    <li><a class="white" routerLink="/login" routerLinkActive="active">Ingresar</a></li>
+                    <li><a class="white" routerLink="/register" routerLinkActive="active">Registrarse</a></li>
                 </ng-container>
                 <ng-template #right_loggedIn>
-                    <li><a routerLink="" routerLinkActive="active" (click)=logout()>Salir</a></li>
+                    <li><a class="white" routerLink="" routerLinkActive="active" (click)=logout()>Salir</a></li>
                 </ng-template>
             </ul>
         </div>
