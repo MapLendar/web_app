@@ -16,10 +16,12 @@
                 <!-- <li><a class="white" routerLink="/" routerLinkActive="active">Home</a></li> -->
                 <ng-container *ngIf="app.isLoggedIn()" >
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <a class="dropdown-toggle white" data-toggle="dropdown" href="#">
+                                Eventos
                             <span class="caret"></span>
+                            
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="background-color: #027233;">
                             <li><a class="white" routerLink="/events" routerLinkActive="active">Crear evento</a></li>
                             <li><a class="white" routerLink="/myEvents" routerLinkActive="active">Mis eventos</a></li>                            
                             <li><a class="white" routerLink="/myInvitations" routerLinkActive="active">Mis invitaciones</a></li>
