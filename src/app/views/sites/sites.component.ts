@@ -19,7 +19,7 @@ export class SitesComponent implements OnInit{
   constructor(private userService: UserService, private sitesService: SitesService)
 	{
 		this.sites = [
-      // {image: "http://1.bp.blogspot.com/-pGhcdlb6f-4/U2b4BLo4v9I/AAAAAAAAIvo/V1bQLXkypnM/s1600/1-nuevo-edificio-facultad-enfermeria-campus-UNAL-sede-bogota.jpg", description:"12345", name:"nameaa"},
+	{"id":1,"name":"hola","longitude":4.636643,"latitude":-74.083390,"image": "http://1.bp.blogspot.com/-pGhcdlb6f-4/U2b4BLo4v9I/AAAAAAAAIvo/V1bQLXkypnM/s1600/1-nuevo-edificio-facultad-enfermeria-campus-UNAL-sede-bogota.jpg"}
       // {image: "http://1.bp.blogspot.com/-pGhcdlb6f-4/U2b4BLo4v9I/AAAAAAAAIvo/V1bQLXkypnM/s1600/1-nuevo-edificio-facultad-enfermeria-campus-UNAL-sede-bogota.jpg", description:"12345", name:"nameaa"}
     ];
 
